@@ -1,0 +1,20 @@
+PUT _ingest/pipeline/estrai_misurato_parsed
+{
+  "description": "Aggiunge misurato_parsed solo se misurato è numerico",
+  "processors": [
+    {
+      "script": {
+        "lang": "painless",
+        "source": """
+          if (ctx.misurato != null) {
+            try {
+              ctx.misurato_parsed = Double.parseDouble(ctx.misurato.toString());
+            } catch (Exception e) {
+              // Se non è un numero, non fare nulla
+            }
+          }
+        """
+      }
+    }
+  ]
+}
