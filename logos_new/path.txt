@@ -1,1 +1,0 @@
-/usr/share/opensearch-dashboards/src/core/server/core_app/assets/logos/*
